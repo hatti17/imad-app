@@ -3,13 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 var pool=require('pool').pool;
 
-var config= {
-    user:'hattishashank',
-    database: 'hattishashank',
-    host: 'db.imad.hasura.io',
-    port:'5432',
-    password: process.env.DB_PASSWORD
-};
+
 
 
 var app = express();
@@ -31,15 +25,7 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-var pool=new pool(config);
-app.get('/test-db', function (req, res) {
-  poool.query('SELECT * FROM test'),function(err,result) {
-      if(err) {
-          res.status(500).send(err.toString());
-  } else{
-      res.send(JSON.stringfy(result));
-  }
-}});
+
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
